@@ -1,0 +1,30 @@
+﻿@model IEnumerable<User>
+
+<h2>Users</h2>
+
+<table class="table">
+
+    <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>About</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>CreatedAt</th>
+    </tr>
+
+    @foreach (var user in Model)
+{
+            <tr>
+                <td><a href=/User/ViewUser/@user.UserID>@user.UserID</a></td>
+                <td>@user.Firstname</td>
+                <td>@user.Lastname</td>
+                <td>@user.About</td>
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+                <td>@user.CreatedAt</td>
+            </tr>
+}
+
+</table>

@@ -12,4 +12,10 @@
     <PackageReference Include="Dapper" Version="2.1.4" />
     <PackageReference Include="MySql.Data" Version="8.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\User\" />
+  </ItemGroup>
 </Project>
