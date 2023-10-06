@@ -17,5 +17,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />
+    <Folder Include="wwwroot\ProfilePicture\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\ProfilePicture\" />
   </ItemGroup>
 </Project>

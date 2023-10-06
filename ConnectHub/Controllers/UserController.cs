@@ -31,6 +31,45 @@ namespace ConnectHub.Controllers
             var user = repo.GetUser(id);
             return View(user);
         }
+
+        public IActionResult UpdateUser(int id)
+        {
+            User user = repo.GetUser(id);
+
+            if(user == null)
+            {
+                return View("UserNotFound");
+            }
+
+            return View(user);
+        }
+
+        public IActionResult UpdateUserToDatabase(User user)
+        {
+            repo.UpdateUser(user);
+
+            return RedirectToAction("ViewUser", new { id = user.UserID });
+        }
+
+        public IActionResult InsertUser()
+        {
+            var user = repo.AssignCategory();
+            return View(user);
+
+        }
+
+        public IActionResult InsertUserToDatabase(User user)
+        {
+            repo.InsertUser(user);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteUser(User user)
+        {
+            repo.DeleteUser(user);
+            return RedirectToAction("Index");
+        }
     }
 }
 

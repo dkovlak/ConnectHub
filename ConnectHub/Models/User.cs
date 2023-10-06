@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ConnectHub.Models
 {
@@ -14,23 +15,26 @@ namespace ConnectHub.Models
 
 		public string About { get; set; }
 
-		public string Username { get; set;}
+		public string Username { get; set; }
 
 		public string Email { get; set; }
 
 		public string Password { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+		public DateTime CreatedAt { get; set; }
 
-        public DateTime LastLogin { get; set; }
+		public DateTime LastLogin { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+		public ICollection<Post> Posts { get; set; }
 
-        public string ProfilePicture { get; set; }
+		public string ProfilePicture { get; set; }
 
-		public User()
+        public IEnumerable<Category> Categories { get; set; }
+
+        public User()
 		{
-			LastLogin = DateTime.Now;
+            CreatedAt = DateTime.Now;
+            LastLogin = DateTime.Now;
 		}
     }
 }

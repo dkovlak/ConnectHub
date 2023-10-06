@@ -1,26 +1,46 @@
-﻿@model User
+﻿
+@model User
 
-<h2>@Model.Username Information<h2>
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <title>@Model.Username Information</title>
+</head>
+<body>
+    <h2>@Model.Username Information</h2>
 
-<table class="table">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>About</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>CreatedAt</th>
+        </tr>
+        <tr>
+            <td>@Model.UserID</td>
+            <td>@Model.Firstname</td>
+            <td>@Model.Lastname</td>
+            <td>@Model.About</td>
+            <td>@Model.Username</td>
+            <td>@Model.Email</td>
+            <td>@Model.CreatedAt</td>
+        </tr>
+    </table>
 
-    <tr>
-        <th>ID</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>About</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>CreatedAt</th>
-    </tr>
-    <tr>
-        <td>@Model.UserID</td>
-        <td>@Model.Firstname</td>
-        <td>@Model.Lastname</td>
-        <td>@Model.About</td>
-        <td>@Model.Username</td>
-        <td>@Model.Email</td>
-        <td>@Model.CreatedAt</td>
-    </tr>
+    <div style="display: inline-block">
+        <a href="/User/UpdateUser/@Model.UserID">Update @Model.Username</a>
+    </div>
 
-</table>
+    <div style="display: block">
+        @using (Html.BeginForm("DeleteUser", "User", "Post"))
+{
+                <input type="hidden" asp-for="UserID" value="@Model.UserID" />
+                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
+}
+    </div>
+
+</body>
+</html>
