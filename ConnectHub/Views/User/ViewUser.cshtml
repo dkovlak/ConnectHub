@@ -8,6 +8,7 @@
 </head>
 <body>
     <h2>@Model.Username Information</h2>
+    @Html.Partial("_UserImage")
 
     <table class="table">
         <tr>
@@ -36,10 +37,10 @@
 
     <div style="display: block">
         @using (Html.BeginForm("DeleteUser", "User", "Post"))
-{
-                <input type="hidden" asp-for="UserID" value="@Model.UserID" />
-                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
-}
+        {
+            <input type="hidden" asp-for="UserID" value="@Model.UserID" />
+            <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
+        }
     </div>
 
 </body>

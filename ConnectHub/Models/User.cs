@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConnectHub.Models
 {
@@ -27,9 +28,12 @@ namespace ConnectHub.Models
 
 		public ICollection<Post> Posts { get; set; }
 
-		public string ProfilePicture { get; set; }
+        [Required(ErrorMessage = "Please choose Front image")]
+        [Display(Name = "Front Image")]
+        [NotMapped]
+		public IFormFile ProfilePicture { get; set; }
 
-        public IEnumerable<Category> Categories { get; set; }
+		public IEnumerable<Category> Categories { get; set; }
 
         public User()
 		{
