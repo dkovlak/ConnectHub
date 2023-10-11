@@ -31,7 +31,7 @@ namespace ConnectHub.Models
         [Required(ErrorMessage = "Please choose Front image")]
         [Display(Name = "Front Image")]
         [NotMapped]
-		public IFormFile ProfilePicture { get; set; }
+		public byte[] ProfilePicture { get; set; }
 
 		public IEnumerable<Category> Categories { get; set; }
 

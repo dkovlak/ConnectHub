@@ -5,35 +5,39 @@
 <body>
     @model IEnumerable<User>
 
-    <h2>Users</h2>
+    <div class="bg-container"></div>
 
-    <div style="display: block">
-        <a href="/User/InsertUser/">Create a user</a>
-    </div>
+    <div class="content-container">
+        <h2>Users</h2>
 
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>About</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>CreatedAt</th>
-        </tr>
+        <div style="display: block">
+            <a href="/User/InsertUser/">Create a user</a>
+        </div>
 
-        @foreach (var user in Model)
-        {
+        <table class="table">
             <tr>
-                <td><a href="/User/ViewUser/@user.UserID">@user.UserID</a></td>
-                <td>@user.Firstname</td>
-                <td>@user.Lastname</td>
-                <td>@user.About</td>
-                <td>@user.Username</td>
-                <td>@user.Email</td>
-                <td>@user.CreatedAt</td>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>About</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>CreatedAt</th>
             </tr>
-        }
-    </table>
+
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td><a href="/User/ViewUser/@user.UserID">@user.UserID</a></td>
+                    <td>@user.Firstname</td>
+                    <td>@user.Lastname</td>
+                    <td>@user.About</td>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.CreatedAt</td>
+                </tr>
+            }
+        </table>
+    </div>
 </body>
 </html>

@@ -26,10 +26,10 @@
 
         <input type="submit" value="Update User" class="btn btn-primary" />*@
 @*}*@
+
 @model User
 
 <h2>Update @Model.Username</h2>
-@Html.Partial("_UserImage")
 
 @using (Html.BeginForm("UpdateUserToDatabase", "User", FormMethod.Post))
 {
@@ -68,4 +68,8 @@
     <div class="form-group">
         <input type="submit" value="Update " class="btn btn-primary" />
     </div>
+
 }
+
+
+

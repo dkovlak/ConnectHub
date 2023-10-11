@@ -1,6 +1,19 @@
 ﻿
 @model User
 
+@{
+    string imgSrc = "";
+    if (Model.ProfilePicture != null)
+    {
+        var base64 = Convert.ToBase64String(Model.ProfilePicture);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    else
+    {
+        // Set a default image source or placeholder image URL
+        imgSrc = "/ProfilePicture/Noname.jpg";
+    }
+}
 <!DOCTYPE html>
 <html data-bs-theme="dark">
 <head>
@@ -8,10 +21,10 @@
 </head>
 <body>
     <h2>@Model.Username Information</h2>
-    @Html.Partial("_UserImage")
 
     <table class="table">
         <tr>
+            <th>Profile Picture</th>
             <th>ID</th>
             <th>Firstname</th>
             <th>Lastname</th>
@@ -21,6 +34,7 @@
             <th>CreatedAt</th>
         </tr>
         <tr>
+            <td style="padding: 30px 20px 30px 30px"><img src="@imgSrc" width="150" height="150" /></td>
             <td>@Model.UserID</td>
             <td>@Model.Firstname</td>
             <td>@Model.Lastname</td>

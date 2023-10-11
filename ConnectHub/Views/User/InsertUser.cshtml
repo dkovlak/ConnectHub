@@ -2,7 +2,7 @@
 
 <h2>Create a user</h2>
 
-@using (Html.BeginForm("InsertUserToDatabase", "User", "Post"))
+@using (Html.BeginForm("InsertUserToDatabase", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input asp-for="UserID" type="hidden" value="" />
 
@@ -28,13 +28,19 @@
         <label for="">Select a Category</label>
         <select class="form-control" name="CategoryID" value="">
             @foreach (var cat in Model.Categories)
-{
-                    <option value="@cat.CategoryID">@cat.CategoryID @cat.CategoryName</option>
-}
+            {
+                <option value="@cat.CategoryID">@cat.CategoryID @cat.CategoryName</option>
+            }
         </select>
     </div>
 
-    <input type="submit" value="Create User" class="btn btn-primary" />
+    <div class="row">
+        <label asp-for="ProfilePicture" class="control-label" style="margin-bottom: 10px">Choose a profile picture for your user!</label>
+        <div class="form-group col-md-6">
+            <img src="~/uploaded/Woof Gang Water System.png" id="preview" />
+            <input type="file" class="form-control" name="Picture" accept="image/*" onchange="previewImage(event)" value="@Model.ProfilePicture" />
+        </div>
+    </div>
 
-
+    <input type="submit" value="Create User" class="add-style" style="margin-top: 10px; margin-left: 0" />
 }
