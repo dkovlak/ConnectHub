@@ -44,18 +44,36 @@ namespace ConnectHub.Controllers
             return View(user);
         }
 
-        public IActionResult UpdateUserToDatabase(User user)
-        {
-            repo.UpdateUser(user);
+        //public IActionResult UpdateUserToDatabase(User user)
+        //{
+        //    repo.UpdateUser(user);
 
-            return RedirectToAction("ViewUser", new { id = user.UserID });
+        //    return RedirectToAction("ViewUser", new { id = user.UserID });
+
+
+        //}
+
+        [HttpPost]
+        public IActionResult UpdateUserToDatabase(User userToUpdate, IFormFile picture)
+        {
+            if (picture != null && picture.Length > 0)
+            {
+                userToUpdate.ProfilePicture = new byte[picture.Length];
+                picture.OpenReadStream().Read(userToUpdate.ProfilePicture, 0, (int)picture.Length);
+            }
+            else
+            {
+                var currentDog = repo.GetUser(userToUpdate.UserID);
+                userToUpdate.ProfilePicture = currentDog.ProfilePicture;
+            }
+            repo.UpdateUser(userToUpdate);
+            return RedirectToAction("Index");
         }
 
         public IActionResult InsertUser()
         {
             var user = repo.AssignCategory();
             return View(user);
-
         }
 
         public IActionResult InsertUserToDatabase(User user)

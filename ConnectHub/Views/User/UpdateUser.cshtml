@@ -29,47 +29,58 @@
 
 @model User
 
-<h2>Update @Model.Username</h2>
+<h2 class="heading">Edit @Model.Username</h2>
 
-@using (Html.BeginForm("UpdateUserToDatabase", "User", FormMethod.Post))
-{
-    @Html.HiddenFor(model => model.UserID)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Firstname, "Firstname", new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Firstname, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Lastname, "Lastname", new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Lastname, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Username, "Username", new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.About, "About", new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.About, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, "Email", new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, "Password", new { @class = "control-label" })
-        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Update " class="btn btn-primary" />
-    </div>
-
+@{
+    var base64 = Convert.ToBase64String(Model.ProfilePicture);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 }
+
+<div class="heading form-div">
+    @using (Html.BeginForm("UpdateUserToDatabase", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.UserID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Firstname, "Firstname", new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Firstname, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lastname, "Lastname", new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Lastname, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, "Username", new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.About, "About", new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.About, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email", new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, "Password", new { @class = "control-label" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        </div>
+
+        <div class="row">
+            <label asp-for="ProfilePicture" class="control-label" style="margin-bottom: 10px">Keep Current Photo or Upload New Photo:</label>
+            <div class="form-group col-md-6">
+                <img src="@imgSrc" style="padding: 30px 20px 30px 30px" width="150" height="150" id="preview" />
+                <input type="file" class="form-control" name="ProfilePicture" accept="image/*" onchange="previewImage(event)" value="@Model.ProfilePicture" />
+            </div>
+        </div>
+
+        <input type="submit" value="Update" class="update-style" style="margin-top: 10px; margin-left: 0" />
+    }
 
 
 

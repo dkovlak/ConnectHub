@@ -51,9 +51,10 @@ namespace ConnectHub.Models
                "about, " +
                "email, " +
                "password, " +
-               "categoryname)" +
+               "categoryname," +
+               "ProfilePicture)" +
                "VALUES " +
-               "(@firstname, @lastname, @username, @about, @email, @password, @categoryname);",
+               "(@firstname, @lastname, @username, @about, @email, @password, @categoryname, (SELECT @picture));",
                new
                {
                    categoryname = user.Categories,
@@ -63,8 +64,13 @@ namespace ConnectHub.Models
                    id = user.UserID,
                    about = user.About,
                    email = user.Email,
-                   password = @user.Password
+                   password = user.Password,
+                   picture = user.ProfilePicture
                });
+
+            //_conn.Execute("UPDATE user SET ProfilePicture = (SELECT @picture) WHERE UserID = @id;",
+                //new { picture = user.ProfilePicture, id = user.UserID});
+
         }
 
         public void UpdateUser(User user)
@@ -75,15 +81,17 @@ namespace ConnectHub.Models
                 "username = @username, " +
                 "about = @about, " +
                 "email = @email, " +
-                "password = @password " +
-                "WHERE userID = @id",
+                "password = @password, " +
+                "ProfilePicture = (SELECT @picture) " +
+                "WHERE userID = @id;",
                 new { firstname = user.Firstname,
                     lastname = user.Lastname,
                     username = user.Username,
                     id = user.UserID,
                     about = user.About,
                     email = user.Email,
-                    password = @user.Password });
+                    password = user.Password,
+                    picture = user.ProfilePicture });
         }
     }
 }

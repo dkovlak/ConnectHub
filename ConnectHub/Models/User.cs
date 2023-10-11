@@ -28,9 +28,6 @@ namespace ConnectHub.Models
 
 		public ICollection<Post> Posts { get; set; }
 
-        [Required(ErrorMessage = "Please choose Front image")]
-        [Display(Name = "Front Image")]
-        [NotMapped]
 		public byte[] ProfilePicture { get; set; }
 
 		public IEnumerable<Category> Categories { get; set; }

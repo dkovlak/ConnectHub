@@ -7,13 +7,13 @@
     {
         var base64 = Convert.ToBase64String(Model.ProfilePicture);
         imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        }
+        else
+        {
+            //default image
+            imgSrc = "/ProfilePicture/Noname.jpg";
+        }
     }
-    else
-    {
-        // Set a default image source or placeholder image URL
-        imgSrc = "/ProfilePicture/Noname.jpg";
-    }
-}
 <!DOCTYPE html>
 <html data-bs-theme="dark">
 <head>
