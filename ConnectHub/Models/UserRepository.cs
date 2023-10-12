@@ -54,7 +54,7 @@ namespace ConnectHub.Models
                "categoryname," +
                "ProfilePicture)" +
                "VALUES " +
-               "(@firstname, @lastname, @username, @about, @email, @password, @categoryname, (SELECT @picture));",
+               "(@firstname, @lastname, @username, @about, @email, @password, @categoryname, @profilePicture);",
                new
                {
                    categoryname = user.Categories,
@@ -65,7 +65,7 @@ namespace ConnectHub.Models
                    about = user.About,
                    email = user.Email,
                    password = user.Password,
-                   picture = user.ProfilePicture
+                   profilePicture = user.ProfilePicture
                });
 
             //_conn.Execute("UPDATE user SET ProfilePicture = (SELECT @picture) WHERE UserID = @id;",

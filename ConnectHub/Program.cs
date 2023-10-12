@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using ConnectHub.Models;
+using Microsoft.AspNetCore.Identity;
 using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +27,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();?
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -38,4 +39,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
 

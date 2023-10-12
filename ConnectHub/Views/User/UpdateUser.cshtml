@@ -29,12 +29,22 @@
 
 @model User
 
+@{
+    string imgSrc = "";
+    if (Model.ProfilePicture != null)
+    {
+        var base64 = Convert.ToBase64String(Model.ProfilePicture);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    else
+    {
+        //default image
+        imgSrc = "/ProfilePicture/Noname.jpg";
+    }
+}
+
 <h2 class="heading">Edit @Model.Username</h2>
 
-@{
-    var base64 = Convert.ToBase64String(Model.ProfilePicture);
-    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-}
 
 <div class="heading form-div">
     @using (Html.BeginForm("UpdateUserToDatabase", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))

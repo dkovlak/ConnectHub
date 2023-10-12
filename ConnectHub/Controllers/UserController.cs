@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ConnectHub.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,6 +17,7 @@ namespace ConnectHub.Controllers
         private IUserRepository repo;
         public UserController(IUserRepository repo)
         {
+
             this.repo = repo;
         }
 
@@ -26,11 +29,25 @@ namespace ConnectHub.Controllers
             return View(users);
         }
 
+        
         public IActionResult ViewUser(int id)
         {
             var user = repo.GetUser(id);
             return View(user);
         }
+
+        //[HttpGet]
+        //[Authorize(Roles ="User")]
+        //public IActionResult Profile()
+        //{
+        //    return View();
+        //}
+
+        //[HttpGet]
+        //public IActionResult Profile(UserViewModel model)
+        //{
+        //    return View();
+        //}
 
         public IActionResult UpdateUser(int id)
         {
@@ -63,8 +80,8 @@ namespace ConnectHub.Controllers
             }
             else
             {
-                var currentDog = repo.GetUser(userToUpdate.UserID);
-                userToUpdate.ProfilePicture = currentDog.ProfilePicture;
+                var currentUser = repo.GetUser(userToUpdate.UserID);
+                userToUpdate.ProfilePicture = currentUser.ProfilePicture;
             }
             repo.UpdateUser(userToUpdate);
             return RedirectToAction("Index");
@@ -82,6 +99,18 @@ namespace ConnectHub.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //[HttpPost]
+        //public IActionResult AddUserToDatabase(User userToAdd, IFormFile picture)
+        //{
+        //    if (picture != null && picture.Length > 0)
+        //    {
+        //        userToAdd.ProfilePicture = new byte[picture.Length];
+        //        picture.OpenReadStream().Read(userToAdd.ProfilePicture, 0, (int)picture.Length);
+        //    }
+        //    repo.InsertUser(userToAdd);
+        //    return RedirectToAction("Index"/*, new { id = dogToAdd.DogID }*/);
+        //}
 
         public IActionResult DeleteUser(User user)
         {
