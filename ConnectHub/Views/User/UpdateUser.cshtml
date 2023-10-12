@@ -75,7 +75,7 @@
             <label asp-for="ProfilePicture" class="control-label" style="margin-bottom: 10px">Keep Current Photo or Upload New Photo:</label>
             <div class="form-group col-md-6">
                 <img src="@imgSrc" style="padding: 30px 20px 30px 30px" width="150" height="150" id="preview" />
-                <input type="file" class="form-control" name="ProfilePicture" accept="image/*" onchange="previewImage(event)" value="@Model.ProfilePicture" />
+                <input type="file" class="form-control" name="picture" accept="image/*" onchange="previewImage(event)" value="@Model.ProfilePicture" />
             </div>
         </div>
 

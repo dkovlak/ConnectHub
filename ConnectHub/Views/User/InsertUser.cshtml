@@ -37,8 +37,7 @@
     <div class="row">
         <label asp-for="ProfilePicture" class="control-label" style="margin-bottom: 10px">Choose a profile picture for your user!</label>
         <div class="form-group col-md-6">
-            <img src="~/ProfilePicture/Noname.jpg" id="preview" />
-            <input type="file" class="form-control" name="ProfilePicture" accept="image/*" onchange="previewImage(event)" value="@Model.ProfilePicture" />
+            <input type="file" class="form-control" name="picture" accept="image/*" onchange="previewImage(event)" value="@Model.ProfilePicture" />
         </div>
     </div>
 
