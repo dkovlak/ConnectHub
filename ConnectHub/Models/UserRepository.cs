@@ -61,7 +61,6 @@ namespace ConnectHub.Models
                    firstname = user.Firstname,
                    lastname = user.Lastname,
                    username = user.Username,
-                   id = user.UserID,
                    about = user.About,
                    email = user.Email,
                    password = user.Password,

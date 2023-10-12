@@ -1,6 +1,17 @@
 ﻿
 html {
+    scroll-behavior: smooth;
     font-size: 14px;
+    background-image: url("/ProfilePicture/Mail.jpg");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 @media (min-width: 768px) {
@@ -20,20 +31,10 @@ html {
 
 body {
     margin-bottom: 60px;
+    overflow-y: scroll; /* Enable vertical scrolling */
+    overflow: auto;
 }
 
-html {
-    background-image: url("/ProfilePicture/Mail.jpg");
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-}
 
 h1, h2, h3, h4, h5, h6 {
     background-color: rgba(0, 0, 0, 0.6); /* Set transparent background color */
