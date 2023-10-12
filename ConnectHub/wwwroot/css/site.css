@@ -20,14 +20,13 @@ html {
 
 body {
     margin-bottom: 60px;
+    overflow-y: scroll;
 }
 
 html {
     background-image: url("/ProfilePicture/Mail.jpg");
-    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
