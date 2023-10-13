@@ -76,11 +76,26 @@ namespace ConnectHub.Controllers
             return View(user);
         }
 
-        public IActionResult InsertUserToDatabase(User user)
+        [HttpPost]
+        public IActionResult InsertUserToDatabase(User user, IFormFile picture)
         {
-            repo.InsertUser(user);
 
+            if (picture != null && picture.Length > 0)
+            {
+                user.ProfilePicture = new byte[picture.Length];
+                picture.OpenReadStream().Read(user.ProfilePicture, 0, (int)picture.Length);
+            }
+            else
+            {
+                var currentDog = repo.GetUser(user.UserID);
+                user.ProfilePicture = currentDog.ProfilePicture;
+            }
+            repo.InsertUser(user);
             return RedirectToAction("Index");
+
+            //repo.InsertUser(user);
+
+            //return RedirectToAction("Index");
         }
 
         public IActionResult DeleteUser(User user)
