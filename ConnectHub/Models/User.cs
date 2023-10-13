@@ -10,7 +10,9 @@ namespace ConnectHub.Models
 	{
 		public int UserID { get; set; }
 
-		public string Firstname { get; set; }
+        [Required(ErrorMessage = "Come on, don't leave your name blank!")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Your name should be between 2 and 50 characters.")]
+        public string Firstname { get; set; }
 
 		public string Lastname { get; set; }
 

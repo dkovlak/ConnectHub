@@ -67,9 +67,6 @@ namespace ConnectHub.Models
                    profilePicture = user.ProfilePicture
                });
 
-            //_conn.Execute("UPDATE user SET ProfilePicture = (SELECT @picture) WHERE UserID = @id;",
-            //    new { picture = user.ProfilePicture, id = user.UserID});
-
         }
 
         public void UpdateUser(User user)
