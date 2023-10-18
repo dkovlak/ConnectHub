@@ -16,6 +16,7 @@ builder.Services.AddScoped<IDbConnection>((s) =>
         conn.Open();
         return conn;
     });
+var connectionString = builder.Configuration.GetConnectionString("Social_Media_Platform");
 
 builder.Services.AddDbContext<ConnectHubContext>(options => options.UseSqlServer(connectionString));
 
@@ -43,6 +44,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
 
