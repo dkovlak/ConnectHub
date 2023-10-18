@@ -1,6 +1,9 @@
-﻿using System.Data;
+using System.Data;
 using ConnectHub.Models;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ConnectHub.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,10 @@ builder.Services.AddScoped<IDbConnection>((s) =>
         conn.Open();
         return conn;
     });
+
+builder.Services.AddDbContext<ConnectHubContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ConnectHubUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ConnectHubContext>();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 

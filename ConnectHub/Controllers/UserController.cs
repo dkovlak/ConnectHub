@@ -11,7 +11,6 @@ namespace ConnectHub.Controllers
 {
     public class UserController : Controller
     {
-        //bro
 
         private IUserRepository repo;
         public UserController(IUserRepository repo)
