@@ -1,5 +1,4 @@
-﻿
-@model User
+﻿@model User
 
 @{
     string imgSrc = "";
@@ -7,55 +6,186 @@
     {
         var base64 = Convert.ToBase64String(Model.ProfilePicture);
         imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-        }
-        else
-        {
-            //default image
-            imgSrc = "/ProfilePicture/Noname.jpg";
-        }
     }
+    else
+    {
+        //default image
+        imgSrc = "/ProfilePicture/Noname.jpg";
+    }
+}
+@*<!DOCTYPE html>*@
+@*<html data-bs-theme="dark">
+    <head>
+        <title>@Model.Username Information</title>
+    </head>
+    <body>
+        <h2>@Model.Username Information</h2>
+
+        <table class="table">
+            <tr>
+                <th>Profile Picture</th>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>About</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>CreatedAt</th>
+            </tr>
+            <tr>
+                <td style="padding: 30px 20px 30px 30px"><img src="@imgSrc" width="150"  /></td>
+                <td>@Model.UserID</td>
+                <td>@Model.Firstname</td>
+                <td>@Model.Lastname</td>
+                <td>@Model.About</td>
+                <td>@Model.Username</td>
+                <td>@Model.Email</td>
+                <td>@Model.CreatedAt</td>
+            </tr>
+        </table>
+
+        <div style="display: inline-block">
+            <a href="/User/UpdateUser/@Model.UserID">Update @Model.Username</a>
+        </div>
+
+        <div style="display: block">
+            @using (Html.BeginForm("DeleteUser", "User", "Post"))
+            {
+                <input type="hidden" asp-for="UserID" value="@Model.UserID" />
+                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
+            }
+        </div>
+
+    </body>
+    </html>*@
 <!DOCTYPE html>
-<html data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
 <head>
     <title>@Model.Username Information</title>
-</head>
-<body>
-    <h2>@Model.Username Information</h2>
-
-    <table class="table">
-        <tr>
-            <th>Profile Picture</th>
-            <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>About</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>CreatedAt</th>
-        </tr>
-        <tr>
-            <td style="padding: 30px 20px 30px 30px"><img src="@imgSrc" width="150"  /></td>
-            <td>@Model.UserID</td>
-            <td>@Model.Firstname</td>
-            <td>@Model.Lastname</td>
-            <td>@Model.About</td>
-            <td>@Model.Username</td>
-            <td>@Model.Email</td>
-            <td>@Model.CreatedAt</td>
-        </tr>
-    </table>
-
-    <div style="display: inline-block">
-        <a href="/User/UpdateUser/@Model.UserID">Update @Model.Username</a>
-    </div>
-
-    <div style="display: block">
-        @using (Html.BeginForm("DeleteUser", "User", "Post"))
-        {
-            <input type="hidden" asp-for="UserID" value="@Model.UserID" />
-            <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body.transparent-bg {
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            margin: 0;
+            padding-bottom: 100px;
         }
-    </div>
 
+        h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #202529;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75); /* Example background, adjust as needed */
+            z-index: -1;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 3px solid black; /* Adjust color as required */
+            display: inline-block;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: #fff;
+        }
+
+            .profile-info p {
+                margin: 5px 0;
+            }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+            .actions a, .actions input {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-decoration: none;
+                color: #fff;
+                background-color: #202529;
+            }
+
+                .actions a:hover, .actions input:hover {
+                    background-color: #1cd760;
+                }
+
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 5px; /* adjust these values to position the badge */
+            right: 5px;
+            width: 15px; /* size of the badge */
+            height: 15px;
+            border-radius: 50%;
+            background-color: green; /* color of the badge */
+            border: 1px solid #202529; /* border color to separate badge from profile pic */
+        }
+    </style>
+</head>
+<body class="transparent-bg">
+    <div class="bg-container"></div>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-img-container">
+                <img class="profile-img" src="@imgSrc" alt="@Model.Username's profile picture" />
+                <div class="badge"></div>
+            </div>
+            <div class="profile-info">
+                <h2>@Model.Username</h2>
+                <p><i class="fas fa-envelope"></i> @Model.Email</p>
+                <p><i class="fas fa-info-circle"></i> @Model.About</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/User/UpdateUser/@Model.UserID">Update Profile</a>
+            @using (Html.BeginForm("DeleteUser", "User", "Post"))
+            {
+                <input type="hidden" asp-for="UserID" value="@Model.UserID" />
+                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete Profile" />
+            }
+        </div>
+    </div>
 </body>
 </html>
