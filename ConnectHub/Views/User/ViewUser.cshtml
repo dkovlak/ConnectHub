@@ -13,51 +13,7 @@
         imgSrc = "/ProfilePicture/Noname.jpg";
     }
 }
-@*<!DOCTYPE html>*@
-@*<html data-bs-theme="dark">
-    <head>
-        <title>@Model.Username Information</title>
-    </head>
-    <body>
-        <h2>@Model.Username Information</h2>
 
-        <table class="table">
-            <tr>
-                <th>Profile Picture</th>
-                <th>ID</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>About</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>CreatedAt</th>
-            </tr>
-            <tr>
-                <td style="padding: 30px 20px 30px 30px"><img src="@imgSrc" width="150"  /></td>
-                <td>@Model.UserID</td>
-                <td>@Model.Firstname</td>
-                <td>@Model.Lastname</td>
-                <td>@Model.About</td>
-                <td>@Model.Username</td>
-                <td>@Model.Email</td>
-                <td>@Model.CreatedAt</td>
-            </tr>
-        </table>
-
-        <div style="display: inline-block">
-            <a href="/User/UpdateUser/@Model.UserID">Update @Model.Username</a>
-        </div>
-
-        <div style="display: block">
-            @using (Html.BeginForm("DeleteUser", "User", "Post"))
-            {
-                <input type="hidden" asp-for="UserID" value="@Model.UserID" />
-                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
-            }
-        </div>
-
-    </body>
-    </html>*@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -160,6 +116,9 @@
             background-color: green; /* color of the badge */
             border: 1px solid #202529; /* border color to separate badge from profile pic */
         }
+        .actions input.delete-btn:hover {
+            background-color: red;
+        }
     </style>
 </head>
 <body class="transparent-bg">
@@ -183,9 +142,57 @@
             @using (Html.BeginForm("DeleteUser", "User", "Post"))
             {
                 <input type="hidden" asp-for="UserID" value="@Model.UserID" />
-                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete Profile" />
+                <input type="submit" class="delete-btn" onclick="return confirm('Delete @Model.Username')" value="Delete Profile" />
+
             }
         </div>
     </div>
 </body>
 </html>
+
+
+@*<!DOCTYPE html>*@
+@*<html data-bs-theme="dark">
+    <head>
+        <title>@Model.Username Information</title>
+    </head>
+    <body>
+        <h2>@Model.Username Information</h2>
+
+        <table class="table">
+            <tr>
+                <th>Profile Picture</th>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>About</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>CreatedAt</th>
+            </tr>
+            <tr>
+                <td style="padding: 30px 20px 30px 30px"><img src="@imgSrc" width="150"  /></td>
+                <td>@Model.UserID</td>
+                <td>@Model.Firstname</td>
+                <td>@Model.Lastname</td>
+                <td>@Model.About</td>
+                <td>@Model.Username</td>
+                <td>@Model.Email</td>
+                <td>@Model.CreatedAt</td>
+            </tr>
+        </table>
+
+        <div style="display: inline-block">
+            <a href="/User/UpdateUser/@Model.UserID">Update @Model.Username</a>
+        </div>
+
+        <div style="display: block">
+            @using (Html.BeginForm("DeleteUser", "User", "Post"))
+            {
+                <input type="hidden" asp-for="UserID" value="@Model.UserID" />
+                <input type="submit" onclick="return confirm('Delete @Model.Username')" value="Delete this product" />
+            }
+        </div>
+
+    </body>
+    </html>*@x

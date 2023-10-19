@@ -1,9 +1,83 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<body class="transparent-bg">
+    <div class="user-table">
+        <div class="container text-center">
+            <h1 class="display-4">Welcome to ConnectHub</h1>
+            <p class="subtitle">Your premier hub for seamless connections and collaborations.</p>
+            <hr class="divider my-4">
+            <p class="info-text">Dive in to explore the platform, connect with like-minded peers, and unlock endless opportunities.</p>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            <div class="action-buttons mt-4">
+                <a class="btn btn-primary btn-lg" href="/User/InsertUser/" role="button">Get Started</a>
+            </div>
 
+            <div class="help-section mt-5">
+                <p>Need assistance or have queries? <a href="https://dot.cards/d_kovlak" target="_blank">Contact Us</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .subtitle {
+        color: #888;
+        font-weight: lighter;
+    }
+
+    .divider {
+        border-top: 2px solid #4CAF50;
+    }
+
+    .info-text {
+        font-size: 18px;
+    }
+
+    .action-buttons a {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #4CAF50;
+        border: none;
+    }
+
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+    .btn-secondary {
+        background-color: #ddd;
+        border: none;
+        color: #333;
+    }
+
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: #ccc;
+            transform: scale(1.05);
+        }
+
+    .help-section a {
+        color: #4CAF50;
+        text-decoration: underline;
+    }
+
+        .help-section a:hover {
+            text-decoration: none;
+        }
+
+    .user-table {
+        width: 100%;
+        background-color: #202529;
+        border-collapse: collapse;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
